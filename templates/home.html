@@ -1,1 +1,194 @@
-<h1>Boston Housing Pricing</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boston House Price Prediction</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:30px;
+        }
+
+        .container{
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.2);
+            width:100%;
+            max-width:900px;
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:25px;
+            color:#333;
+        }
+
+        .form-grid{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:15px;
+        }
+
+        .input-group{
+            display:flex;
+            flex-direction:column;
+        }
+
+        label{
+            margin-bottom:5px;
+            font-weight:bold;
+            color:#555;
+        }
+
+        input{
+            padding:10px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            outline:none;
+            transition:0.3s;
+        }
+
+        input:focus{
+            border-color:#667eea;
+            box-shadow:0 0 8px rgba(102,126,234,0.4);
+        }
+
+        .btn{
+            margin-top:25px;
+            width:100%;
+            padding:12px;
+            border:none;
+            border-radius:8px;
+            background:#667eea;
+            color:white;
+            font-size:18px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#5563d6;
+        }
+
+        .prediction{
+            margin-top:20px;
+            text-align:center;
+            font-size:22px;
+            color:green;
+            font-weight:bold;
+        }
+
+        @media(max-width:768px){
+            .form-grid{
+                grid-template-columns:1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Boston House Price Prediction</h1>
+
+    <form action="/predict" method="POST">
+
+        <div class="form-grid">
+
+            <div class="input-group">
+                <label>CRIM</label>
+                <input type="number" step="any" name="crim" required>
+            </div>
+
+            <div class="input-group">
+                <label>ZN</label>
+                <input type="number" step="any" name="zn" required>
+            </div>
+
+            <div class="input-group">
+                <label>INDUS</label>
+                <input type="number" step="any" name="indus" required>
+            </div>
+
+            <div class="input-group">
+                <label>CHAS</label>
+                <input type="number" name="chas" required>
+            </div>
+
+            <div class="input-group">
+                <label>NOX</label>
+                <input type="number" step="any" name="nox" required>
+            </div>
+
+            <div class="input-group">
+                <label>RM</label>
+                <input type="number" step="any" name="rm" required>
+            </div>
+
+            <div class="input-group">
+                <label>AGE</label>
+                <input type="number" step="any" name="age" required>
+            </div>
+
+            <div class="input-group">
+                <label>DIS</label>
+                <input type="number" step="any" name="dis" required>
+            </div>
+
+            <div class="input-group">
+                <label>RAD</label>
+                <input type="number" name="rad" required>
+            </div>
+
+            <div class="input-group">
+                <label>TAX</label>
+                <input type="number" name="tax" required>
+            </div>
+
+            <div class="input-group">
+                <label>PTRATIO</label>
+                <input type="number" step="any" name="ptratio" required>
+            </div>
+
+            <div class="input-group">
+                <label>B</label>
+                <input type="number" step="any" name="b" required>
+            </div>
+
+            <div class="input-group">
+                <label>LSTAT</label>
+                <input type="number" step="any" name="lstat" required>
+            </div>
+
+        </div>
+
+        <button class="btn" type="submit">
+            Predict House Price
+        </button>
+
+    </form>
+
+    {% if prediction_text %}
+        <div class="prediction">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
